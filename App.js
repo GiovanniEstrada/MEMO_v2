@@ -1,20 +1,26 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import MainMenu from './MainMenu';
+import CodeBar from './QrLector';
+// import ContarCuento from './ContarCuento'
+import Galeria from './Galeria'
+import AudioPlayer from './Reproductor'
 
-export default function App() {
+const Stack = createStackNavigator();
+
+function App() {
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <NavigationContainer>
+      <Stack.Navigator initialRouteName="Menu principal">
+        <Stack.Screen name="Menu principal" component={MainMenu} />
+        <Stack.Screen name="Codigo de barras" component={CodeBar} />
+        {/* <Stack.Screen name="Contar cuentos" component={ContarCuento} /> */}
+        <Stack.Screen name="Galeria" component={Galeria} />
+        <Stack.Screen name="Captura el momento" component={AudioPlayer} />
+      </Stack.Navigator>
+    </NavigationContainer>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
+export default App;
